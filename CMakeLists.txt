@@ -16,7 +16,10 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 
 # boost lib
-find_package(Boost REQUIRED COMPONENTS system thread)
+SET(Boost_ADDITIONAL_VERSIONS "1.69" "1.69.0")
+SET(Boost_USE_STATIC_LIBS   ON)
+find_package(Boost REQUIRED COMPONENTS)
 include_directories( ${Boost_INCLUDE_DIRS} )
-target_link_libraries(${PROJECT_NAME} ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})
+target_link_libraries(${PROJECT_NAME} )
 
+target_link_libraries(${PROJECT_NAME}  -lpthread -lm)

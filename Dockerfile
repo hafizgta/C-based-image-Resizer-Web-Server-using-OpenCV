@@ -1,7 +1,10 @@
 FROM ubuntu:focal
+
+# requirement for overall 
 RUN apt-get update --fix-missing \
   && apt-get install -y git g++ make wget build-essential
 
+# requirement for OpenCV
 RUN export DEBIAN_FRONTEND=noninteractive \
 	&& apt-get install -y tzdata \
 	&& ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
@@ -14,10 +17,12 @@ RUN apt install -y cmake git pkg-config libgtk-3-dev \
   libtbb2 libtbb-dev libdc1394-22-dev libopenexr-dev \
   libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev
 
+# building OpenCV
 WORKDIR /opt/app 
 RUN mkdir ./opencv_build && cd ./opencv_build\
-  && git clone https://github.com/opencv/opencv.git\
-  && git clone https://github.com/opencv/opencv_contrib.git
+  && git clone https://github.com/opencv/opencv.git --branch 4.2.0 --single-branch\
+  && git clone https://github.com/opencv/opencv_contrib.git --branch 4.2.0 --single-branch
+
 
 RUN cd ./opencv_build/opencv\
   && mkdir -p build
@@ -35,7 +40,7 @@ RUN cd ./opencv_build/opencv/build \
 
 RUN pkg-config --modversion opencv4
 
-
+# building boost
 RUN wget https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.gz \
   && tar xfz boost_1_69_0.tar.gz \
   && rm boost_1_69_0.tar.gz \
@@ -43,19 +48,21 @@ RUN wget https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.
   && ./bootstrap.sh --prefix=/usr/local --with-libraries=program_options \
   && ./b2 install 
 
-
+# removing installer file
 RUN rm -rf boost_1_69_0 \
     && rm -rf opencv_build\
     && rm -rf /var/lib/apt/lists/*
 
-ADD *.h /
-ADD *.cpp /
-ADD CMakeLists.txt /
+# adding project files
+ADD *.h ./
+ADD *.cpp ./
+ADD CMakeLists.txt ./
 
+# building the project
 RUN cmake . \
   && make
 
 EXPOSE 8080
 
-ENTRYPOINT ["/bin/bash"]
-# ENTRYPOINT ["./tf_detect_crow"]
+# ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["./OPENCV_RESIZER"]

@@ -39,6 +39,6 @@ RUN cd /home && wget https://dl.bintray.com/boostorg/release/1.69.0/source/boost
   && cd /home \
   && rm -rf boost_1_69_0
 
-EXPOSE 5000
+EXPOSE 8080
 
 ENTRYPOINT ["/bin/bash"]

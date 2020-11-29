@@ -79,18 +79,6 @@ String textToString(string filename)
 
 int main(int argc, char** argv)
 {
-	//Mat testImage = imread("test.jpg");
-	//ImageContainer image(testImage);
-	//image.resizeImage(400, 400);
-
-	//stringToText(image.base64, "imagebase64.txt");
-	//string testbase64 = textToString("imagebase64.txt");
-	//ImageContainer newImage(testbase64);
-
-	//imshow("window", newImage.mat);
-
-
-	//waitKey(0);
 	
 	SimpleApp app;
 

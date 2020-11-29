@@ -1,4 +1,5 @@
-# C++ based image Resizer Web Server using OpenCV
+# C++ based openCV image resizer Web Server
+this project demonstrate the example of how to make a C++ based image resizer web server.
 
 ## Build Docker
 ```
@@ -6,10 +7,14 @@ docker build -t image-resizer .
 ```
 ## Run Docker
 ```
-docker run -ti --rm --name image-resizer image-resizer-server
+docker run -ti --rm --name image-resizer-server image-resizer 
 ```
 
 ## hitting the API
+API address and host:
+```
+HTTP://[host_address]:8080/resize_image [POST]
+```
 Input Payload:
 ```
 Content-Type: application/json
@@ -20,6 +25,7 @@ Content-Type: application/json
 }
 ```
 Output Payload:
+
 If success:
 ```
 HTTP 200

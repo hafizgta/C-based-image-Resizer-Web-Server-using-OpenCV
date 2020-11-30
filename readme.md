@@ -1,3 +1,12 @@
+
+<span style="color:red">Please READ: </span>
+> This Repo was created as a requirement of a job application. the fact that I was failed to spot on the minor bugs when
+> the deadline is due, this page is not showing the working sample of this project, simply checkout the branch finalization to get to the
+> working product.
+> 
+> that branch would be merged to this main branch a week after this
+> application process take effect (6/12/2020)
+
 # C++ based openCV image resizer Web Server
 this project demonstrate the example of how to make a C++ based image resizer web server.
 

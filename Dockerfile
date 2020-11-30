@@ -17,13 +17,17 @@ RUN apt install -y cmake git pkg-config libgtk-3-dev \
   libtbb2 libtbb-dev libdc1394-22-dev libopenexr-dev \
   libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev
 
-# building OpenCV
+# cloning OpenCV
 WORKDIR /opt/app 
-RUN mkdir ./opencv_build && cd ./opencv_build\
-  && git clone https://github.com/opencv/opencv.git --branch 4.2.0 --single-branch\
-  && git clone https://github.com/opencv/opencv_contrib.git --branch 4.2.0 --single-branch
+RUN mkdir ./opencv_build && cd ./opencv_build \
+  && git clone https://github.com/opencv/opencv.git \
+  && git clone https://github.com/opencv/opencv_contrib.git 
 
+RUN cd ./opencv_build/opencv && git checkout tags/4.2.0 
 
+RUN cd ./opencv_build/opencv_contrib && git checkout tags/4.2.0 
+
+# building OpenCV
 RUN cd ./opencv_build/opencv\
   && mkdir -p build
 

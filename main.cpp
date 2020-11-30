@@ -2,6 +2,7 @@
 #include "base64.h"
 #include <iostream>
 #include "crow_all.h"
+
 using namespace cv;
 using namespace std;
 using namespace crow;
@@ -42,13 +43,8 @@ public:
 
 	void resizeImage(int height, int width)
 	{	
-		cout << "original image height: " << size(mat).height << endl;
-		cout << "original image width: " << size(mat).width << endl;
-
 		Size newSize(500, 500);
 		resize(mat, mat, Size(height, width));
-		cout << "new image height: " << size(mat).height << endl;
-		cout << "new image width: " << size(mat).width << endl;
 		base64 = encodeImage(mat);
 
 	}

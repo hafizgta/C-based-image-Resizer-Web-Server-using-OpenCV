@@ -18,7 +18,7 @@ docker build -t image-resizer .
 ```
 ## Run Docker
 ```
-docker run -ti --rm --name image-resizer-server image-resizer 
+docker run -p 8080:8080 --rm --name image-resizer-server image-resizer 
 ```
 
 ## hitting the API
